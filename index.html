@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>인터랙티브 시네마그라피</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- 제이쿼리 애니메이스 트랜스폼 플러그인  -->
+	<script src="js/jquery.transform2d.js"></script>
+	<style>
+		*{margin: 0; padding: 0;}
+		body{ background: #333; }
+		h1{
+			font-weight: normal;
+			color: #fff;
+			text-align: center;
+			padding: 10px 0;
+		}
+		.bg{
+			position: relative;
+			background: #666;
+		}
+		.bg > img:last-child{
+
+			position: absolute;
+
+		}
+		.frame{
+			position: absolute;
+			left: 42.66%; top: 24.7%;
+			/*border: 1px solid red;*/
+			width: 15.4%;
+			height: 36.55%;
+			overflow: hidden;
+			/*box-shadow: 0 0 20px rgba(0,0,0,0.6);*/
+		}
+		.frame > img{
+			position: absolute;
+			top: 0;
+			left: -30px;
+		}
+	</style>
+</head>
+<body>
+	<h1>인터랙티브 시네마그라피</h1>
+	<div class="bg">
+		<img src="images/bg.png" alt="박물관" width="100%">
+		<div class="frame">
+			<img src="images/stop.gif" alt="그림" class="cine" height="100%">
+		</div>
+	</div>
+	
+	<script>
+		$(function(){
+			$('.cine').mouseover(function(){
+				$(this).attr('src','images/play.gif');
+			});
+
+			$('.bg').mouseover(function(){
+				$(this).stop().animate({
+					transform: 'scale(1.5, 1.5)'
+				}, 500);
+			});
+
+			$('.bg').click(function(){
+				$(this).stop().animate({
+					transform: 'scale(1, 1)'
+				}, 500);
+			});
+
+		});
+	</script>
+</body>
+</html>
